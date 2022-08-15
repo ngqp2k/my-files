@@ -7,20 +7,27 @@ set si
 set mouse=a
 set cb=unnamedplus
 set hls
-
-autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
-
-imap { {}<Left>
-imap {<CR> {<CR>}<Esc>O
-imap {{ {
-imap {} {}
-
-imap jk <Esc>
-
-nmap <Leader>qq :r ~/cp/main.cpp<CR>kdd35jo<CR>
-nmap <Leader>ww :e $MYVIMRC<CR>
+set noshowmode
+"set termguicolors
 
 nmap<silent> <C-J> <C-W><C-J>
 nmap<silent> <C-K> <C-W><C-K>
 nmap<silent> <C-L> <C-W><C-L>
 nmap<silent> <C-H> <C-W><C-H>
+
+nmap <Leader>qq :r ~\main.cpp<CR>
+nmap <Leader>db :r ~\debug.cpp<CR>
+nmap <Leader>ww :e $MYVIMRC<CR>
+nmap <Leader>h :noh<CR>
+
+call plug#begin()
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'nvim-lualine/lualine.nvim'
+	Plug 'ishan9299/nvim-solarized-lua'
+call plug#end()
+
+lua << END
+require('lualine').setup()
+END
+
+colorscheme solarized-flat 
