@@ -16,6 +16,9 @@ set cursorline
 nmap <Leader>qq :r ~\main.cpp<CR>
 nmap <Leader>ww :e $MYVIMRC<CR>
 
+nmap<silent> <S-j> :bnext<CR>
+nmap<silent> <S-k> :bprevious<CR>
+
 nmap<silent> <C-J> <C-W><C-J>
 nmap<silent> <C-K> <C-W><C-K>
 nmap<silent> <C-L> <C-W><C-L>
@@ -33,7 +36,13 @@ colorscheme onedark
 
 lua << EOF
 vim.opt.showmode = false 
+
+local keymap = vim.keymap.set
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
 require("lualine").setup()
+
 require("toggleterm").setup{
 	size = 5,
 		open_mapping = [[<c-\>]],
